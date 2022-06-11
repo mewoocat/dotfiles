@@ -2,7 +2,7 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
-
+local gears = require("gears")
 
 
 -- Create a launcher widget and a main menu
@@ -19,8 +19,68 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.launcher_icon,
-                                     menu = mymainmenu })
+launcher_icon = wibox.widget.imagebox()
+launcher_icon:set_image(beautiful.launcher_icon)
+launcher_icon = wibox.container.margin(launcher_icon, 12, 9, 9, 9)
+mylauncher = wibox.container.background(launcher_icon, "#00000000")
+mylauncher.shape = gears.shape.rounded_rect
+mylauncher:connect_signal("button::press", function() awful.spawn("rofi -show run") end)
 
-mylauncher = wibox.container.margin(mylauncher, 9, 9, 9, 9)
+local bg
+function gSwap(mode)
+	if (mode == "on") then
+		bg = mylauncher.bg 
+		mylauncher.bg = "#ff0000"	
+	else
+		mylauncher.bg = bg
+	end
+end
+
+mylauncher:connect_signal("mouse::enter", function() gSwap("on") end)
+mylauncher:connect_signal("mouse::leave", function() gSwap() end)
+
+
+
+
+--local bg
+--function bgSwap(mode)
+--	if (mode == "on") then
+--		bg = menubutton.bg 
+--		menubutton.bg = "#FF0000"	
+--	else
+--		menubutton.bg = bg
+--	end
+--end
+--
+--menuicon = wibox.widget.imagebox()
+--menuicon:set_image(beautiful.launcher_icon)
+--menubutton = wibox.container.background(menuicon, "#00FF00")
+--
+--menubutton:connect_signal("mouse::enter", function() bgSwap("on") end)
+--menubutton:connect_signal("mouse::leave", function() bgSwap() end)
+--
+--mylauncher = menubutton
+
+
+
+
+
+
+
+
+
+--local bg
+--function bgSwap(mode, widget)
+--	if (mode == "on") then
+--		bg = widget.bg 
+--		widget.bg = "#44444444"	
+--	else
+--		widget.bg = bg
+--	end
+--end
+
+--mylauncher:connect_signal("mouse::enter", function() bgSwap("on", mylauncher) end)
+--mylauncher:connect_signal("mouse::leave", function() bgSwap("off", mylauncher) end)
+
+
 

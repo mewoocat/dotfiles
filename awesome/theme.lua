@@ -17,7 +17,7 @@ theme.systray_icon_spacing = 12
 
 x = xresources.get_current_theme ()
 
-theme.font          = "Source Code Pro 12"
+theme.font          = "Roboto 12"
 
 theme.bg_normal     = x.color0
 theme.bg_focus      = x.color6

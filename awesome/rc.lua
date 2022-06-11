@@ -12,23 +12,21 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
+
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
+beautiful.init("~/.config/awesome/theme.lua")
+
 require("awful.hotkeys_popup.keys")
 require("error_handling")
-beautiful.init("~/.config/awesome/theme.lua")
 require("user_variables")
 require("layouts")
-
-
-
 require("widgets/launcher")
 
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
 
 
 -- {{{ Wibar
@@ -94,7 +92,7 @@ local tasklist_buttons = gears.table.join(
                                                   c:emit_signal(
                                                       "request::activate",
                                                       "tasklist",
-                                                      {raise = true}
+                                                     {raise = true}
                                                   )
                                               end
                                           end),
@@ -260,7 +258,7 @@ awful.screen.connect_for_each_screen(function(s)
             --mykeyboardlayout,
             mysystray,
 			menubutton,
-			wifi_status,
+			--wifi_status,
 			wifi,
             wibox.widget.textbox(' '),
 			battery,
