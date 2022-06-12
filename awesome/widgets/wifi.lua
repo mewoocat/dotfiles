@@ -21,10 +21,10 @@ wifi_status = awful.widget.watch('bash -c "cat /proc/net/wireless | sed -n \'3 p
 				wifi_image:set_image(beautiful.wifi_disconnected)
 			else	
 				quality = stdout * (10 / 7)
-				if (quality > 80) then
+				if (quality > 60) then
 					wifi_image:set_image(beautiful.wifi_high)
 				end
-				if (quality <= 80) then
+				if (quality <= 60) then
 					wifi_image:set_image(beautiful.wifi_mid)
 				end
 				widget:set_text(quality)

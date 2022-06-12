@@ -19,7 +19,9 @@ x = xresources.get_current_theme ()
 
 theme.font          = "Roboto 12"
 
-theme.bg_normal     = x.color0
+theme.bg_normal     = x.color0 .. "bb"
+
+
 theme.bg_focus      = x.color6
 theme.bg_urgent     = x.color1
 theme.bg_minimize   = x.color3
