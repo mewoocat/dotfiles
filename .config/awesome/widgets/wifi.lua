@@ -13,7 +13,7 @@ wifi = {}
 cmd = "cat /proc/net/wireless | sed -n '3 p' | cut -d ' ' -f 6"
 
 -- derived from https://awesomewm.org/recipes/wirelessStatus/
-wifi_status = awful.widget.watch('bash -c "cat /proc/net/wireless | sed -n \'3 p\' | cut -d \' \' -f 6 | head -c -2"', 1,
+wifi.status = awful.widget.watch('bash -c "cat /proc/net/wireless | sed -n \'3 p\' | cut -d \' \' -f 6 | head -c -2"', 1,
 		function(widget, stdout)
 			if (stdout == "") 
 			then

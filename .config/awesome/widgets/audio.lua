@@ -1,6 +1,7 @@
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local awful = require("awful")
+local gears = require("gears")
 
 local audio = {}
 
@@ -14,16 +15,42 @@ audio.icon = wibox.container.margin(
 vol_image:set_image(beautiful.vol_high)
 
 
-level = wibox.widget.textbox()
+audio.level_text = wibox.widget.textbox()
 awful.spawn.easy_async("pamixer --get-volume", function(stdout)
-	level.text = stdout:sub(0, -2) .. "%"
+	audio.level_text.text = stdout:sub(0, -2) .. "%"
 end)
-myaudio = wibox.container.margin(
+audio.level = wibox.container.margin(
 	--awful.widget.watch('pamixer --get-volume', 1),
-	level,
+	audio.level_text,
 	2, 2, 2, 2
 )
 
-audio.level = myaudio
+-- volume slider widget
+audio.slider = wibox.widget {
+	bar_shape = gears.shape.rounded_rect,
+	bar_height          = 10,
+	bar_color           = beautiful.fg_focus,
+	handle_color        = beautiful.bg_focus,
+	handle_shape        = gears.shape.circle,
+	handle_border_color = beautiful.border_color,
+	handle_border_width = 8,
+	handle_width 		= 40,
+	value               = 0,
+	forced_height		= 20,
+	forced_width		= 60,
+	widget              = wibox.widget.slider,
+}
+
+-- sets volume slider value on start
+awful.spawn.easy_async("pamixer --get-volume", function(stdout)
+	audio.slider["value"] = tonumber(stdout)
+end)
+
+-- Connect to `property::value` to use the value on change
+audio.slider:connect_signal("property::value", function(_, new_value)
+    --naughty.notify { title = "Slider changed", message = tostring(new_value) }
+	awful.spawn.with_shell("pamixer --set-volume " .. tostring(new_value))	
+end)
+
 
 return audio

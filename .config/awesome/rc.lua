@@ -17,7 +17,6 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
 
-
 beautiful.init("~/.config/awesome/theme.lua")
 
 require("awful.hotkeys_popup.keys")
@@ -25,23 +24,10 @@ require("error_handling")
 require("user_variables")
 require("layouts")
 require("widgets/launcher")
-require("menubar")
-
-
-
-
-
-
-
-
 require("taglist")
-
 require("tasklist")
-
 require("wallpaper")
-
 require("screens")
-
 require("keybinds")
 require("rules")
 require("signals")

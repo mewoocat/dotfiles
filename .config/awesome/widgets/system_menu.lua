@@ -5,36 +5,13 @@ local gears = require("gears")
 local naughty = require("naughty")
 
 -- widgets
-require("widgets.brightness")
+local brightness = require("widgets.brightness")
+local audio = require("widgets.audio")
+local moniter = require("widgets/moniter")
+
 
 local system_menu = {}
 
-
-local vol_slider = wibox.widget {
-	bar_shape = gears.shape.rounded_rect,
-	bar_height          = 10,
-	bar_color           = beautiful.fg_focus,
-	handle_color        = beautiful.bg_focus,
-	handle_shape        = gears.shape.circle,
-	handle_border_color = beautiful.border_color,
-	handle_border_width = 8,
-	handle_width 		= 40,
-	value               = 0,
-	forced_height		= 20,
-	forced_width		= 60,
-	widget              = wibox.widget.slider,
-}
-
--- sets volume slider value on start
-awful.spawn.easy_async("pamixer --get-volume", function(stdout)
-	vol_slider["value"] = tonumber(stdout)
-end)
-
--- Connect to `property::value` to use the value on change
-vol_slider:connect_signal("property::value", function(_, new_value)
-    --naughty.notify { title = "Slider changed", message = tostring(new_value) }
-	awful.spawn.with_shell("pamixer --set-volume " .. tostring(new_value))	
-end)
 
 
 
@@ -43,17 +20,17 @@ menu = awful.popup {
     widget = {	
         {
             {
-                widget = wifi_status,
+                widget = wifi.status,
 				-- add ssid
             },
 			{
-				widget = vol_slider,
+				widget = audio.slider,
 			},
 			{
-				widget = brightness_slider,
+				widget = brightness.slider,
 			},
 			{
-				widget = awful.widget.watch('bash -c "sensors | grep Package | cut -d \' \' -f 5 | cut -c 2-"', 1)
+				widget = moniter.cpu_temp
 			},
 			
 			{

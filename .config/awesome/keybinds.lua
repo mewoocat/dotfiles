@@ -3,6 +3,8 @@ local gears = require("gears")
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
+local audio = require("widgets/audio")
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -130,7 +132,7 @@ globalkeys = gears.table.join(
 		function()
 			awful.spawn.with_shell("pamixer -i 5")  
 			awful.spawn.easy_async("pamixer --get-volume", function(stdout)
-				audio.text = stdout:sub(0, -2) .. "%"
+				audio.level_text.text = stdout:sub(0, -2) .. "%"
 			end)
 		end, 
 		{description = "raise volume", group = "system"
@@ -142,7 +144,7 @@ globalkeys = gears.table.join(
 		function() 
 			awful.spawn.with_shell("pamixer -d 5") 
 			awful.spawn.easy_async("pamixer --get-volume", function(stdout)
-				audio.text = stdout:sub(0, -2) .. "%"
+				audio.level_text.text = stdout:sub(0, -2) .. "%"
 			end)
 
 		end, 

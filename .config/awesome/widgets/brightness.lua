@@ -4,8 +4,10 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local awful = require("awful")
 
+local brightness = {}
 
-brightness_slider = wibox.widget {
+
+brightness.slider = wibox.widget {
 	bar_shape = gears.shape.rounded_rect,
 	bar_height          = 10,
 	bar_color           = "#ff0000",
@@ -21,10 +23,12 @@ brightness_slider = wibox.widget {
 
 -- sets brightness slider value on start
 awful.spawn.easy_async("light", function(stdout)
-	brightness_slider["value"] = tonumber(stdout)
+	brightness.slider["value"] = tonumber(stdout)
 end)
 
 -- Connect to `property::value` to use the value on change
-brightness_slider:connect_signal("property::value", function(_, new_value)
+brightness.slider:connect_signal("property::value", function(_, new_value)
 	awful.spawn.with_shell("light -S " .. tostring(new_value))
 end)
+
+return brightness
