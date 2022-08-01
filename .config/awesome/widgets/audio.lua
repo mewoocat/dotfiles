@@ -29,14 +29,14 @@ audio.level = wibox.container.margin(
 audio.slider = wibox.widget {
 	bar_shape = gears.shape.rounded_rect,
 	bar_height          = 10,
-	bar_color           = beautiful.fg_focus,
+	bar_color           = beautiful.fg_normal,
 	handle_color        = beautiful.bg_focus,
 	handle_shape        = gears.shape.circle,
 	handle_border_color = beautiful.border_color,
 	handle_border_width = 8,
-	handle_width 		= 40,
+	--handle_width 		= 40,
 	value               = 0,
-	forced_height		= 20,
+	forced_height		= 48,
 	forced_width		= 60,
 	widget              = wibox.widget.slider,
 }

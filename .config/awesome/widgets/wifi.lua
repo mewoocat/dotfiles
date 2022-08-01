@@ -48,4 +48,12 @@ icon = wibox.container.margin(
 
 wifi.icon = icon
 
+wifi.ssid = wibox.widget {
+	widget = wibox.widget.textbox,
+}
+
+awful.spawn.easy_async_with_shell("iwgetid -r", function(stdout) 
+	wifi.ssid.text = stdout 
+end)
+
 return wifi

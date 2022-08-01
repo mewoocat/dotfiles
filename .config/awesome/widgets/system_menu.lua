@@ -8,21 +8,18 @@ local naughty = require("naughty")
 local brightness = require("widgets.brightness")
 local audio = require("widgets.audio")
 local moniter = require("widgets/moniter")
-
+local user = require("widgets/user")
 
 local system_menu = {}
-
-
 
 
 
 menu = awful.popup {
     widget = {	
         {
-            {
-                widget = wifi.status,
-				-- add ssid
-            },
+			{
+				widget = user.name,
+			},
 			{
 				widget = audio.slider,
 			},
@@ -30,9 +27,26 @@ menu = awful.popup {
 				widget = brightness.slider,
 			},
 			{
-				widget = moniter.cpu_temp
+					{
+						widget = wifi.ssid,
+					},
+					{
+            		    widget = wifi.status,
+						-- add ssid
+            		},
+					{
+						widget = moniter.cpu_temp
+					},
+					{
+            		    widget = wifi.ssid,
+						-- add ssid
+            		},
+					forced_num_cols = 2,
+   					forced_num_rows = 2,
+   					homogeneous     = true,
+   					expand          = true,		
+					layout = wibox.layout.grid,
 			},
-			
 			{
                 {
                     text   = 'foobar',
@@ -50,7 +64,7 @@ menu = awful.popup {
     		--expand          = true,
     		--layout = wibox.layout.grid
             layout = wibox.layout.fixed.vertical,
-			spacing = 50,
+			spacing = 10,
         },
         margins = 50,
 		forced_height = 1000,
@@ -70,7 +84,7 @@ menu = awful.popup {
 	--opacity		 = 1.0,
 	--bg			 = "#ffffff",	
 	maximum_width		 = 800,
-	maximum_height		 = 600,
+	maximum_height		 = 1200,
 }
 
 

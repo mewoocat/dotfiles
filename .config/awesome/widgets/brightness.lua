@@ -10,13 +10,13 @@ local brightness = {}
 brightness.slider = wibox.widget {
 	bar_shape = gears.shape.rounded_rect,
 	bar_height          = 10,
-	bar_color           = "#ff0000",
-	handle_color        = "#00f0f0",
+	bar_color           = beautiful.fg_normal,
+	handle_color        = beautiful.bg_focus,
 	handle_shape        = gears.shape.circle,
 	handle_border_color = beautiful.border_color,
 	handle_border_width = 8,
 	value               = 25,
-	forced_height		= 20,
+	forced_height		= 48,
 	forced_width		= 60,
 	widget              = wibox.widget.slider,
 }
