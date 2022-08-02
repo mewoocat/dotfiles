@@ -8,7 +8,7 @@ battery_image = wibox.widget.imagebox()
 
 battery.icon = wibox.container.margin(
 	battery_image,
-	9, 9, 9, 9
+	7, 7, 7, 7
 )
 
 battery.percent = awful.widget.watch('acpi', 1,

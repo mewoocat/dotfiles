@@ -20,10 +20,10 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                         })
 
 launcher_icon = wibox.widget.imagebox()
-launcher_icon:set_image(beautiful.bars)
-launcher_icon = wibox.container.margin(launcher_icon, 9, 9, 9, 9)
+launcher_icon:set_image(beautiful.launcher_icon)
+launcher_icon = wibox.container.margin(launcher_icon, 6, 6, 6, 6)
 mylauncher = wibox.container.background(launcher_icon, "#00000000")
-mylauncher.shape = gears.shape.rounded_rect
+--mylauncher.shape = gears.shape.rounded_rect
 mylauncher:connect_signal("button::press", function() awful.spawn("rofi -show drun") end)
 
 local bg

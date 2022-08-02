@@ -9,7 +9,7 @@ local brightness = require("widgets.brightness")
 local audio = require("widgets.audio")
 local moniter = require("widgets/moniter")
 local user = require("widgets/user")
-
+local tray = require("widgets/tray")
 local system_menu = {}
 
 
@@ -35,10 +35,10 @@ menu = awful.popup {
 						-- add ssid
             		},
 					{
-						widget = moniter.cpu_temp
+						widget = moniter.cpu_temp,
 					},
 					{
-            		    widget = wifi.ssid,
+            		    widget = moniter.cpu_usage,
 						-- add ssid
             		},
 					forced_num_cols = 2,
@@ -47,6 +47,11 @@ menu = awful.popup {
    					expand          = true,		
 					layout = wibox.layout.grid,
 			},
+			--[[
+			{
+				widget = tray.systray
+			},
+			--]]
 			{
                 {
                     text   = 'foobar',
@@ -57,14 +62,25 @@ menu = awful.popup {
                 shape  = gears.shape.rounded_bar,
                 widget = wibox.container.background
             }, 	
-		
-			forced_num_cols = 2,
-    		forced_num_rows = 2,
+			{
+				{
+					widget = moniter.cpu_usage,
+				},
+				--[[
+				{
+					widget = moniter.cpu_usage_percent,
+				},
+				--]]
+				spacing = 20,
+				layout = wibox.layout.fixed.horizontal
+			},	
+			--forced_num_cols = 2,
+    		--forced_num_rows = 2,
     		--homogeneous     = true,
     		--expand          = true,
     		--layout = wibox.layout.grid
             layout = wibox.layout.fixed.vertical,
-			spacing = 10,
+			spacing = 20,
         },
         margins = 50,
 		forced_height = 1000,
@@ -102,21 +118,21 @@ end
 local bg
 function bgSwap(mode)
 	if (mode == "on") then
-		bg = menu.bg 
-		menu.bg = beautiful.bg_focus	
+		bg = system_menu.button.bg 
+		system_menu.button.bg = "#f10355"	
 	else
-		menu.bg = bg
+		system_menu.button.bg = bg
 	end
 end
 
---menuicon = wibox.widget.imagebox()
---menuicon:set_image(beautiful.bars)
---menu = wibox.container.margin(menuicon, 9, 9, 9, 9)
---menu = wibox.container.background(menu, "#00000000")
+menuicon = wibox.widget.imagebox()
+menuicon:set_image(beautiful.bars)
+button = wibox.container.margin(menuicon, 9, 9, 9, 9)
+system_menu.button = wibox.container.background(button, "#00000000")
 
---menu:connect_signal("mouse::enter", function() bgSwap("on") end)
---menu:connect_signal("mouse::leave", function() bgSwap() end)
---menu:connect_signal("button::press", function() toggleMenu(system_menu)  end)
+system_menu.button:connect_signal("mouse::enter", function() bgSwap("on") end)
+system_menu.button:connect_signal("mouse::leave", function() bgSwap() end)
+system_menu.button:connect_signal("button::press", function() toggleMenu(system_menu)  end)
 
 
 
