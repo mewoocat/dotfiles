@@ -38,7 +38,7 @@ menu = awful.popup {
 						widget = moniter.cpu_temp,
 					},
 					{
-            		    widget = moniter.cpu_usage,
+            		    widget = moniter.cpu_usage_percent,
 						-- add ssid
             		},
 					forced_num_cols = 2,
@@ -66,11 +66,11 @@ menu = awful.popup {
 				{
 					widget = moniter.cpu_usage,
 				},
-				--[[
+				
 				{
 					widget = moniter.cpu_usage_percent,
 				},
-				--]]
+				
 				spacing = 20,
 				layout = wibox.layout.fixed.horizontal
 			},	
