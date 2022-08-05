@@ -10,6 +10,9 @@ local audio = require("widgets.audio")
 local moniter = require("widgets/moniter")
 local user = require("widgets/user")
 local tray = require("widgets/tray")
+local night_light = require("widgets/night_light")
+
+
 local system_menu = {}
 
 
@@ -41,8 +44,36 @@ menu = awful.popup {
             		    widget = moniter.cpu_usage_percent,
 						-- add ssid
             		},
-					forced_num_cols = 2,
+					{	
+						--forced_height = 100,
+						--forced_width = 100,
+						widget = night_light.button,
+					},
+					{	
+						--forced_height = 100,
+						--forced_width = 100,
+						widget = night_light.button,
+					},
+					{	
+						--forced_height = 100,
+						--forced_width = 100,
+						widget = night_light.button,
+
+					},
+					{	
+						forced_height = 100,
+						--forced_width = 100,
+						widget = night_light.button,
+					},
+
+					--forced_height = 400,
+					--forced_width = 600,
+
+					forced_num_cols = 4,
    					forced_num_rows = 2,
+					spacing = 40,
+					horizontal_homogeneous = true,
+					vertical_homogeneous = true,	
    					homogeneous     = true,
    					expand          = true,		
 					layout = wibox.layout.grid,
@@ -73,7 +104,8 @@ menu = awful.popup {
 				
 				spacing = 20,
 				layout = wibox.layout.fixed.horizontal
-			},	
+			},
+				
 			--forced_num_cols = 2,
     		--forced_num_rows = 2,
     		--homogeneous     = true,
@@ -84,7 +116,7 @@ menu = awful.popup {
         },
         margins = 50,
 		forced_height = 1000,
-        forced_width  = 1000,
+        forced_width  = 800,
 
         widget  = wibox.container.margin
     },
@@ -119,7 +151,7 @@ local bg
 function bgSwap(mode)
 	if (mode == "on") then
 		bg = system_menu.button.bg 
-		system_menu.button.bg = "#f10355"	
+		system_menu.button.bg = beautiful.bg_focus	
 	else
 		system_menu.button.bg = bg
 	end
@@ -132,7 +164,7 @@ system_menu.button = wibox.container.background(button, "#00000000")
 
 system_menu.button:connect_signal("mouse::enter", function() bgSwap("on") end)
 system_menu.button:connect_signal("mouse::leave", function() bgSwap() end)
-system_menu.button:connect_signal("button::press", function() toggleMenu(system_menu)  end)
+system_menu.button:connect_signal("button::press", function() system_menu.toggleMenu() end)
 
 
 

@@ -42,13 +42,30 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
+
 	s.mytaglist = awful.widget.taglist {
     		screen  = s,
     		filter  = awful.widget.taglist.filter.all,
     		layout   = {
-    		    spacing = 12,
+    		    spacing = -4,
     		    layout  = wibox.layout.fixed.horizontal
     		},
+			buttons = {
+            awful.button({ }, 1, function(t) t:view_only() end),
+            awful.button({ modkey }, 1, function(t)
+                                            if client.focus then
+                                                client.focus:move_to_tag(t)
+                                            end
+                                        end),
+            awful.button({ }, 3, awful.tag.viewtoggle),
+            awful.button({ modkey }, 3, function(t)
+                                            if client.focus then
+                                                client.focus:toggle_tag(t)
+                                            end
+                                        end),
+            awful.button({ }, 4, function(t) awful.tag.viewprev(t.screen) end),
+            awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end),
+        },
     		widget_template = {
     		    {
     		        {
@@ -98,7 +115,6 @@ awful.screen.connect_for_each_screen(function(s)
     		    end,
     		},
 			
-    		buttons = taglist_buttons
 	}
     -- Create a tasklist widget
    -- s.mytasklist = awful.widget.tasklist {
@@ -123,7 +139,7 @@ awful.screen.connect_for_each_screen(function(s)
 									  	end)
 	rw:connect_signal("mouse::leave", function() rw.bg = original_bg end)
 	rw:connect_signal("button::press", function() system_menu.toggleMenu()  end)	
-	
+	--system_menu.button:connect_signal("button::press", function() system_menu.toggleMenu() end)
 	local widgets = {
 		{			
 			--tray.button,
@@ -136,7 +152,6 @@ awful.screen.connect_for_each_screen(function(s)
 			audio.level,
 			audio.icon,
 			wibox.widget.textbox('    '),
-			system_menu.button,
 			layout = wibox.layout.fixed.horizontal,
 		},
 		widget = rw
@@ -147,6 +162,7 @@ awful.screen.connect_for_each_screen(function(s)
 		wibox.widget.textbox('    '),
 		s.mylayoutbox,
 		widgets,
+		system_menu.button,
 		layout = wibox.layout.fixed.horizontal,
 	
 	}
