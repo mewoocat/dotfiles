@@ -9,7 +9,7 @@ local button = require("widgets/button")
 local night_light = {}
 
 local icon = wibox.widget.imagebox()
-icon:set_image(beautiful.bars)
+icon:set_image(beautiful.moon)
 button_margin = wibox.container.margin(icon, 30, 30, 30, 30)
 button_bg = wibox.container {
 	button_margin, 

@@ -26,6 +26,7 @@ theme.bg_focus      = x.color6
 theme.bg_urgent     = x.color1
 theme.bg_minimize   = x.color3
 theme.bg_systray    = theme.bg_normal
+theme.bg_alt        = x.color8 .. "77"
 
 theme.fg_normal     = x.color7
 theme.fg_focus      = theme.bg_normal
@@ -188,6 +189,9 @@ theme.circle = gears.color.recolor_image(theme.circle, theme.fg_normal)
 
 theme.bars = icon_dir .. "bars.svg"
 theme.bars = gears.color.recolor_image(theme.bars, theme.fg_normal)
+
+theme.moon = icon_dir .. "moon.svg"
+theme.moon = gears.color.recolor_image(theme.moon, theme.fg_normal)
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.

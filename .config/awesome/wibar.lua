@@ -47,7 +47,7 @@ awful.screen.connect_for_each_screen(function(s)
     		screen  = s,
     		filter  = awful.widget.taglist.filter.all,
     		layout   = {
-    		    spacing = -4,
+    		    spacing = 0,
     		    layout  = wibox.layout.fixed.horizontal
     		},
 			buttons = {
@@ -71,20 +71,32 @@ awful.screen.connect_for_each_screen(function(s)
     		        {
     		            {
     		                {
-    		                    {
-    		                        id     = "index_role",
-									opacity = 0,
-    		                        widget = wibox.widget.textbox,
-    		                    },
-    		                    margins = 2,
-    		                    widget  = wibox.container.margin,
-    		                },
+    		                    id     = "index_role",
+								opacity = 0,
+    		                	widget = wibox.widget.textbox,
+   			                },
     		                bg     = "#00000000",
 							--opacity = 0.2,
     		                shape  = gears.shape.circle,
 							border_width = 4,
 							border_color = beautiful.fg_normal,
     		                widget = wibox.container.background,
+						
+							create_callback = function(self, c3, index, objects) --luacheck: no unused args
+    		   		     		self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
+    		   		 	    	self:connect_signal("mouse::enter", function()
+    		   		 	        	if self.bg ~= "#ff0000" then
+    		   		 	            	self.backup     = self.bg
+    		   		 	            	self.has_backup = true
+    		   		 	        	end
+    		   		 	        	self.bg = "#ff0000"
+    		   		 	    	end)
+    		   		 	    	self:connect_signal("mouse::leave", function()
+    		   		 	        	if self.has_backup then self.bg = self.backup end
+    		   		 	    	end)
+    		   		 		end,
+
+	
     		            },
     		            layout = wibox.layout.fixed.horizontal,
     		        },
@@ -96,6 +108,7 @@ awful.screen.connect_for_each_screen(function(s)
     		    },
     		    id     = "background_role",
     		    widget = wibox.container.background,
+
     		    -- Add support for hover colors and an index label
     		    create_callback = function(self, c3, index, objects) --luacheck: no unused args
     		        self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
@@ -110,6 +123,7 @@ awful.screen.connect_for_each_screen(function(s)
     		            if self.has_backup then self.bg = self.backup end
     		        end)
     		    end,
+
     		    update_callback = function(self, c3, index, objects) --luacheck: no unused args
     		        self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
     		    end,
@@ -124,7 +138,7 @@ awful.screen.connect_for_each_screen(function(s)
   --  }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 48 })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 44 })
 
 	local system_menu = require("widgets/system_menu")
 	

@@ -11,15 +11,16 @@ local moniter = require("widgets/moniter")
 local user = require("widgets/user")
 local tray = require("widgets/tray")
 local night_light = require("widgets/night_light")
+local wifi = require("widgets/wifi")
 
 
 local system_menu = {}
 
 
 
-menu = awful.popup {
+local menu = awful.popup {
     widget = {	
-        {
+        {	
 			{
 				widget = user.name,
 			},
@@ -30,59 +31,77 @@ menu = awful.popup {
 				widget = brightness.slider,
 			},
 			{
+					{	
+						{
+							{
+								widget = moniter.cpu_temp,
+							},
+							{
+								widget = moniter.cpu_temp_int,
+							},
+							layout = wibox.layout.stack,
+						},
+						{
+							widget = moniter.cpu_usage,  
+						},
+						{
+							widget = moniter.cpu_usage_percent,
+						},
+						{
+							widget = moniter.mem_usage,
+						},
+						
+						{
+							widget = moniter.mem_usage_percent,
+						},
+		
+						
+						spacing = 20,
+						layout = wibox.layout.fixed.horizontal,
+					},
+					bg     = beautiful.bg_alt,
+                	clip   = true,
+                	shape  = gears.shape.rounded_rect,
+                	widget = wibox.container.background
+
+			},
+			{
 					{
+						forced_height = 100,
+						forced_width = 100,
 						widget = wifi.ssid,
 					},
 					{
+						forced_height = 100,
+						forced_width = 100,
             		    widget = wifi.status,
 						-- add ssid
             		},
-					{
-						widget = moniter.cpu_temp,
-					},
-					{
-            		    widget = moniter.cpu_usage_percent,
-						-- add ssid
-            		},
 					{	
-						--forced_height = 100,
-						--forced_width = 100,
+						forced_height = 100,
+						forced_width = 100,
 						widget = night_light.button,
-					},
-					{	
-						--forced_height = 100,
-						--forced_width = 100,
-						widget = night_light.button,
-					},
-					{	
-						--forced_height = 100,
-						--forced_width = 100,
-						widget = night_light.button,
-
 					},
 					{	
 						forced_height = 100,
-						--forced_width = 100,
-						widget = night_light.button,
+						forced_width = 100,
+						widget = wifi.button,
 					},
 
-					--forced_height = 400,
+					--forced_height = 600,
 					--forced_width = 600,
 
 					forced_num_cols = 4,
-   					forced_num_rows = 2,
-					spacing = 40,
-					horizontal_homogeneous = true,
-					vertical_homogeneous = true,	
+   					forced_num_rows = 1,
+					--forced_height = 400,
+					--forced_width = 400,
+					--spacing = 40,
+					--horizontal_homogeneous = true,
+					--vertical_homogeneous = true,	
    					homogeneous     = true,
-   					expand          = true,		
+   					--expand          = true,		
 					layout = wibox.layout.grid,
 			},
-			--[[
-			{
-				widget = tray.systray
-			},
-			--]]
 			{
                 {
                     text   = 'foobar',
@@ -92,19 +111,16 @@ menu = awful.popup {
                 clip   = true,
                 shape  = gears.shape.rounded_bar,
                 widget = wibox.container.background
-            }, 	
+            },
+			--[[
 			{
-				{
-					widget = moniter.cpu_usage,
-				},
-				
-				{
-					widget = moniter.cpu_usage_percent,
-				},
-				
-				spacing = 20,
-				layout = wibox.layout.fixed.horizontal
+				widget = tray.systray
 			},
+			--]]
+			
+			
+				
+
 				
 			--forced_num_cols = 2,
     		--forced_num_rows = 2,
@@ -112,13 +128,13 @@ menu = awful.popup {
     		--expand          = true,
     		--layout = wibox.layout.grid
             layout = wibox.layout.fixed.vertical,
-			spacing = 20,
+			spacing = 10,
         },
         margins = 50,
-		forced_height = 1000,
-        forced_width  = 800,
+		--forced_height = 1000,
+        --forced_width  = 680,
 
-        widget  = wibox.container.margin
+        widget  = wibox.container.margin,
     },
     border_color = '#00ff00',
     border_width = 0,
@@ -131,8 +147,8 @@ menu = awful.popup {
 	ontop		 = true,
 	--opacity		 = 1.0,
 	--bg			 = "#ffffff",	
-	maximum_width		 = 800,
-	maximum_height		 = 1200,
+	maximum_width		 = 600,
+	maximum_height		 = 800,
 }
 
 
