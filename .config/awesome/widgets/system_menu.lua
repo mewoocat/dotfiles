@@ -25,7 +25,15 @@ local menu = awful.popup {
 				widget = user.name,
 			},
 			{
-				widget = audio.slider,
+				{
+					forced_width = 40,
+					forced_height= 40,
+					widget = audio.icon,
+				},
+				{
+					widget = audio.slider,
+				},
+				layout = wibox.layout.fixed.horizontal,
 			},
 			{
 				widget = brightness.slider,
@@ -50,7 +58,6 @@ local menu = awful.popup {
 						{
 							widget = moniter.mem_usage,
 						},
-						
 						{
 							widget = moniter.mem_usage_percent,
 						},
@@ -128,7 +135,7 @@ local menu = awful.popup {
     		--expand          = true,
     		--layout = wibox.layout.grid
             layout = wibox.layout.fixed.vertical,
-			spacing = 10,
+			spacing = 20,
         },
         margins = 50,
 		--forced_height = 1000,

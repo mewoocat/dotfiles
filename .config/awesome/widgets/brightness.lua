@@ -14,9 +14,11 @@ brightness.slider = wibox.widget {
 	handle_color        = beautiful.bg_focus,
 	handle_shape        = gears.shape.circle,
 	handle_border_color = beautiful.border_color,
-	handle_border_width = 8,
+	handle_border_width = 0,
+	handle_width		= 40,
+	handle_margins		= 0,
 	value               = 25,
-	forced_height		= 48,
+	forced_height		= 60,
 	forced_width		= 60,
 	widget              = wibox.widget.slider,
 }

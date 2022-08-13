@@ -30,7 +30,7 @@ require("wibar")
 require("keybinds")
 require("rules")
 require("signals")
-
+require("startup")
 
 
 
