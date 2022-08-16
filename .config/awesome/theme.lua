@@ -196,6 +196,10 @@ theme.moon = gears.color.recolor_image(theme.moon, theme.fg_normal)
 theme.brightness = icon_dir .. "brightness.svg"
 theme.brightness = gears.color.recolor_image(theme.brightness, theme.fg_normal)
 
+
+theme.power = icon_dir .. "power.svg"
+theme.power = gears.color.recolor_image(theme.power, theme.fg_normal)
+
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil

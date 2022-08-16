@@ -5,11 +5,11 @@ local gears = require("gears")
 local button = require("widgets/button")
 
 
-wifi_image = wibox.widget.imagebox()
+local wifi_image = wibox.widget.imagebox()
 wifi_image:set_image(beautiful.wifi_high)
 
 
-wifi = {}
+local wifi = {}
 
 local b_icon = wibox.widget.imagebox()
 b_icon:set_image(beautiful.bars)

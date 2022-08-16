@@ -31,17 +31,12 @@
      inkscape:window-maximized="1"
      inkscape:current-layer="svg43" />
   <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-  <circle
-     style="fill:#000000;stroke-width:19.5546;stroke-linecap:round;stroke-linejoin:bevel"
+  <path
      id="path251"
-     cx="256"
-     cy="256"
-     r="256" />
-  <ellipse
-     style="fill:#000000;stroke-width:20;stroke-linecap:round;stroke-linejoin:bevel"
-     id="path253"
-     cx="300.06824"
-     cy="298.09891"
-     rx="25.209154"
-     ry="28.209118" />
+     style="color:#000000;fill:#000000;stroke-linecap:round;stroke-linejoin:bevel;-inkscape-stroke:none"
+     d="M 162.2168 57.378906 C 87.884957 92.684255 36.251955 168.50766 36.251953 256 C 36.251953 377.00824 134.99176 475.74804 256 475.74805 C 377.00824 475.74805 475.74805 377.00824 475.74805 256 C 475.74804 168.50765 424.11504 92.684252 349.7832 57.378906 L 349.7832 126.5 C 389.80566 155.45886 415.74805 202.54256 415.74805 256 C 415.74805 344.58189 344.58189 415.74805 256 415.74805 C 167.41811 415.74805 96.251953 344.58189 96.251953 256 C 96.251954 202.54256 122.19434 155.45886 162.2168 126.5 L 162.2168 57.378906 z " />
+  <path
+     id="rect965"
+     style="fill:#000000;stroke:none;stroke-width:54.8956;stroke-linecap:round;stroke-linejoin:bevel"
+     d="m 216.88253,18.974639 h 78.23496 V 281.85549 h -78.23496 z" />
 </svg>

@@ -12,6 +12,8 @@ local user = require("widgets/user")
 local tray = require("widgets/tray")
 local night_light = require("widgets/night_light")
 local wifi = require("widgets/wifi")
+local theme_mode = require("widgets/theme_mode")
+local power = require("widgets/power")
 
 
 local system_menu = {}
@@ -107,7 +109,7 @@ local menu = awful.popup {
 					{
 						forced_height = 100,
 						forced_width = 100,
-            		    widget = wifi.status,
+            		    widget = theme_mode.button,
 						-- add ssid
             		},
 					{	
@@ -148,7 +150,13 @@ local menu = awful.popup {
 					{
                     	widget = user.name,
 					},
-					layout = wibox.layout.fixed.horizontal,
+					{
+						widget = power.power_button,
+					},	
+					layout = wibox.layout.align.horizontal,
+					--fill_space = true,
+					expand = "none",
+
                 },
                 bg     = beautiful.bg_alt,
                 clip   = true,
