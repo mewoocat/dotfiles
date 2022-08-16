@@ -6,4 +6,4 @@ editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- path to image
-pfp = ""
+pfp = "/home/ghost/Pictures/cat-black.gif"

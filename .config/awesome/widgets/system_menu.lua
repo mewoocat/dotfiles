@@ -20,51 +20,77 @@ local system_menu = {}
 
 local menu = awful.popup {
     widget = {	
-        {	
-			{
-				widget = user.name,
-			},
-			{
+        {
+			{	
 				{
-					forced_width = 40,
-					forced_height= 40,
-					widget = audio.icon,
-				},
-				{
-					widget = audio.slider,
-				},
-				layout = wibox.layout.fixed.horizontal,
-			},
-			{
-				widget = brightness.slider,
-			},
-			{
-					{	
+					{
 						{
 							{
-								widget = moniter.cpu_temp,
+								--forced_width = 60,
+								forced_height = 50,
+								--resize = false,
+								widget = audio.icon,
 							},
-							{
-								widget = moniter.cpu_temp_int,
-							},
-							layout = wibox.layout.stack,
+							widget = wibox.container.margin,
+							margins = 10,
 						},
 						{
-							widget = moniter.cpu_usage,  
+							widget = audio.slider,
 						},
-						{
-							widget = moniter.cpu_usage_percent,
-						},
-						{
-							widget = moniter.mem_usage,
-						},
-						{
-							widget = moniter.mem_usage_percent,
-						},
-		
-						
-						spacing = 20,
 						layout = wibox.layout.fixed.horizontal,
+					},
+					{
+						{
+							{
+								--forced_width = 60,
+								forced_height = 50,
+								--resize = false,
+								widget = brightness.icon,
+							},
+							widget = wibox.container.margin,
+							margins = 10,
+						},
+						{
+							widget = brightness.slider,
+						},
+						layout = wibox.layout.fixed.horizontal,
+					},
+					layout = wibox.layout.fixed.vertical,
+				},
+				widget = wibox.container.margin,
+				margins = 4,
+			},
+			{
+					{
+						{	
+							{
+								{
+									widget = moniter.cpu_temp,
+								},
+								{
+									widget = moniter.cpu_temp_int,
+								},
+								layout = wibox.layout.stack,
+							},
+							{
+								widget = moniter.cpu_usage,  
+							},
+							{
+								widget = moniter.cpu_usage_percent,
+							},
+							{
+								widget = moniter.mem_usage,
+							},
+							{
+								widget = moniter.mem_usage_percent,
+							},
+		
+							
+							spacing = 20,
+							layout = wibox.layout.fixed.horizontal,
+						},
+						widget = wibox.container.margin,
+						margins = 16,
 					},
 					bg     = beautiful.bg_alt,
                 	clip   = true,
@@ -111,14 +137,26 @@ local menu = awful.popup {
 			},
 			{
                 {
-                    text   = 'foobar',
-                    widget = wibox.widget.textbox
+					
+					{
+						{
+							widget = user.pfp,
+						},
+						widget = wibox.container.margin,
+						margins = 16,
+					},
+					{
+                    	widget = user.name,
+					},
+					layout = wibox.layout.fixed.horizontal,
                 },
-                bg     = '#00ff00',
+                bg     = beautiful.bg_alt,
                 clip   = true,
-                shape  = gears.shape.rounded_bar,
+                shape  = gears.shape.rounded_rect,
                 widget = wibox.container.background
             },
+
+
 			--[[
 			{
 				widget = tray.systray
@@ -154,7 +192,7 @@ local menu = awful.popup {
 	ontop		 = true,
 	--opacity		 = 1.0,
 	--bg			 = "#ffffff",	
-	maximum_width		 = 600,
+	maximum_width		 = 500,
 	maximum_height		 = 800,
 }
 

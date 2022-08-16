@@ -19,7 +19,7 @@ brightness.slider = wibox.widget {
 	handle_margins		= 0,
 	value               = 25,
 	forced_height		= 60,
-	forced_width		= 60,
+	--forced_width		= 60,
 	widget              = wibox.widget.slider,
 }
 
@@ -32,5 +32,11 @@ end)
 brightness.slider:connect_signal("property::value", function(_, new_value)
 	awful.spawn.with_shell("light -S " .. tostring(new_value))
 end)
+
+brightness.icon = wibox.widget {
+	--resize = false,
+	image = beautiful.brightness,
+	widget = wibox.widget.imagebox,
+}
 
 return brightness

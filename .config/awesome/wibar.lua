@@ -17,6 +17,7 @@ local wifi = require("widgets/wifi")
 local tray = require("widgets/tray")
 local audio = require("widgets/audio")
 
+local launcher = require("widgets/launcher")
 
 
 awful.screen.connect_for_each_screen(function(s)
@@ -65,7 +66,7 @@ awful.screen.connect_for_each_screen(function(s)
                                         end),
             awful.button({ }, 4, function(t) awful.tag.viewprev(t.screen) end),
             awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end),
-        },
+        	},
     		widget_template = {
     		    {
     		        {
@@ -75,15 +76,20 @@ awful.screen.connect_for_each_screen(function(s)
 								opacity = 0,
     		                	widget = wibox.widget.textbox,
    			                },
-    		                bg     = "#00000000",
-							--opacity = 0.2,
+							id = "background_role",
+    		                bg     = "#00ffff00",
     		                shape  = gears.shape.circle,
-							border_width = 4,
+							border_width = 2,
 							border_color = beautiful.fg_normal,
     		                widget = wibox.container.background,
-						
-							create_callback = function(self, c3, index, objects) --luacheck: no unused args
+							create_callback = function(self, c3, index, objects)
+								self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
+								self.bg = "#ff0000"
+							end,
+							--[[	
+							create_callback = function(self, c3, index, objects) --luacheck: no unused args		 
     		   		     		self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
+								
     		   		 	    	self:connect_signal("mouse::enter", function()
     		   		 	        	if self.bg ~= "#ff0000" then
     		   		 	            	self.backup     = self.bg
@@ -95,8 +101,10 @@ awful.screen.connect_for_each_screen(function(s)
     		   		 	        	if self.has_backup then self.bg = self.backup end
     		   		 	    	end)
     		   		 		end,
-
-	
+					        update_callback = function(self, c3, index, objects) --luacheck: no unused args
+            					self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
+        					end,
+							--]]
     		            },
     		            layout = wibox.layout.fixed.horizontal,
     		        },
@@ -113,11 +121,11 @@ awful.screen.connect_for_each_screen(function(s)
     		    create_callback = function(self, c3, index, objects) --luacheck: no unused args
     		        self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
     		        self:connect_signal("mouse::enter", function()
-    		            if self.bg ~= "#ff0000" then
+    		            if self.bg ~= "#000000" then
     		                self.backup     = self.bg
     		                self.has_backup = true
     		            end
-    		            self.bg = "#ff0000"
+    		            self.bg = "#00ff00"
     		        end)
     		        self:connect_signal("mouse::leave", function()
     		            if self.has_backup then self.bg = self.backup end
@@ -189,8 +197,8 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-			spacing = 20,
-            mylauncher,
+			--spacing = 20,
+            launcher.mylauncher,
             s.mytaglist,
             s.mypromptbox,
         },
