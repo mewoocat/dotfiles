@@ -150,7 +150,7 @@ local icon_dir = os.getenv("HOME") .. "/.config/awesome/icons/"
 
 
 -- Custom Icons:
-theme.launcher_icon = "/home/ghost/.config/awesome/icons/razer.svg"
+theme.launcher_icon = "/home/ghost/.config/awesome/icons/gundam.svg"
 theme.launcher_icon = gears.color.recolor_image(theme.launcher_icon, theme.fg_normal )
 
 theme.battery_icon = icon_dir .. "bat-full.svg"
@@ -179,7 +179,7 @@ theme.wifi_dc = gears.color.recolor_image(theme.wifi_dc, theme.fg_normal)
 
 
 
-theme.bat_charging = gears.color.recolor_image(icon_dir .. "bat-charging.svg", theme.fg_normal)
+theme.bat_charging = gears.color.recolor_image(icon_dir .. "battery_c.svg", theme.fg_normal)
 
 theme.menu_icon = icon_dir .. "razer.svg"
 theme.menu_icon = gears.color.recolor_image(theme.menu_icon, theme.fg_normal)

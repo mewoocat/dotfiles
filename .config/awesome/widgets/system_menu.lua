@@ -139,24 +139,28 @@ local menu = awful.popup {
 			},
 			{
                 {
-					
 					{
 						{
-							widget = user.pfp,
+							{
+								widget = user.pfp,
+							},
+							widget = wibox.container.margin,
+							margins = 16,
 						},
-						widget = wibox.container.margin,
-						margins = 16,
+						{
+                	    	widget = user.name,
+						},
+						layout = wibox.layout.fixed.horizontal,
 					},
 					{
-                    	widget = user.name,
-					},
-					{
+						widget = wibox.widget.textbox,
+					},	
+					{	
 						widget = power.power_button,
 					},	
 					layout = wibox.layout.align.horizontal,
 					--fill_space = true,
 					expand = "none",
-
                 },
                 bg     = beautiful.bg_alt,
                 clip   = true,

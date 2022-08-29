@@ -16,6 +16,8 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
+require("startup")
+
 beautiful.init("~/.config/awesome/theme.lua")
 
 require("awful.hotkeys_popup.keys")
@@ -31,7 +33,6 @@ require("wibar")
 require("keybinds")
 require("rules")
 require("signals")
-require("startup")
 
 
 

@@ -19,6 +19,8 @@ local audio = require("widgets/audio")
 
 local launcher = require("widgets/launcher")
 
+--beautiful.useless_gap = 0
+
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -57,9 +59,9 @@ awful.screen.connect_for_each_screen(function(s)
                                             if client.focus then
                                                 client.focus:move_to_tag(t)
                                             end
-                                        end),
-            awful.button({ }, 3, awful.tag.viewtoggle),
-            awful.button({ modkey }, 3, function(t)
+										end),
+			awful.button({ }, 3, awful.tag.viewtoggle),
+			awful.button({ modkey }, 3, function(t)
                                             if client.focus then
                                                 client.focus:toggle_tag(t)
                                             end
@@ -69,74 +71,62 @@ awful.screen.connect_for_each_screen(function(s)
         	},
     		widget_template = {
     		    {
-    		        {
-    		            {
-    		                {
-    		                    id     = "index_role",
-								opacity = 0,
-    		                	widget = wibox.widget.textbox,
-   			                },
-							id = "background_role",
-    		                bg     = "#00ffff00",
-    		                shape  = gears.shape.circle,
-							border_width = 2,
-							border_color = beautiful.fg_normal,
-    		                widget = wibox.container.background,
-							create_callback = function(self, c3, index, objects)
-								self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
-								self.bg = "#ff0000"
-							end,
-							--[[	
-							create_callback = function(self, c3, index, objects) --luacheck: no unused args		 
-    		   		     		self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
-								
-    		   		 	    	self:connect_signal("mouse::enter", function()
-    		   		 	        	if self.bg ~= "#ff0000" then
-    		   		 	            	self.backup     = self.bg
-    		   		 	            	self.has_backup = true
-    		   		 	        	end
-    		   		 	        	self.bg = "#ff0000"
-    		   		 	    	end)
-    		   		 	    	self:connect_signal("mouse::leave", function()
-    		   		 	        	if self.has_backup then self.bg = self.backup end
-    		   		 	    	end)
-    		   		 		end,
-					        update_callback = function(self, c3, index, objects) --luacheck: no unused args
-            					self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
-        					end,
-							--]]
-    		            },
-    		            layout = wibox.layout.fixed.horizontal,
-    		        },
-    		        left  = 18,
-    		        right = 18,
-					top   = 10,
-					bottom = 10,
-    		        widget = wibox.container.margin
-    		    },
-    		    id     = "background_role",
-    		    widget = wibox.container.background,
+						{
+							{
+								{
+									id     = "index_role",
+									opacity = 0,
+									widget = wibox.widget.textbox,
+								},
+								bg     = "#00ffff00",
+								shape  = gears.shape.circle,
+								border_width = 2,
+								border_color = beautiful.fg_normal,
+								widget = wibox.container.background,
+							},
+							layout = wibox.layout.fixed.horizontal,
+						},
+						left  = 8,
+						right = 8,
+						top   = 8,
+						bottom = 8,
+						widget = wibox.container.margin,
+					},
+					--id     = "background_role",
+					widget = wibox.container.background,
+					bg = "ffff00",
+					create_callback = function(self, c3, index, objects) --luacheck: no unused args
+						self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
+						local circle = self.children[1].children[1].children[1]
+						self:connect_signal("mouse::enter", function()
+							if circle.bg ~= "#00000000" then
+								circle.backup     = circle.bg
+								circle.has_backup = true
+							end
+							circle.bg = "#00ff00"
+						end)
+						self:connect_signal("mouse::leave", function()
+							if circle.has_backup then circle.bg = circle.backup end
+						end)
+						if c3.selected then
+							circle.bg = beautiful.bg_focus
+						end
+						if c3.selected == false then
+							circle.bg = "#00000000"
+						end
+					end,
+					update_callback = function(self, c3, index, objects) --luacheck: no unused args
+						self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
 
-    		    -- Add support for hover colors and an index label
-    		    create_callback = function(self, c3, index, objects) --luacheck: no unused args
-    		        self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
-    		        self:connect_signal("mouse::enter", function()
-    		            if self.bg ~= "#000000" then
-    		                self.backup     = self.bg
-    		                self.has_backup = true
-    		            end
-    		            self.bg = "#00ff00"
-    		        end)
-    		        self:connect_signal("mouse::leave", function()
-    		            if self.has_backup then self.bg = self.backup end
-    		        end)
-    		    end,
-
-    		    update_callback = function(self, c3, index, objects) --luacheck: no unused args
-    		        self:get_children_by_id("index_role")[1].markup = "<b> "..c3.index.." </b>"
-    		    end,
-    		},
-			
+						local circle = self.children[1].children[1].children[1]
+						if c3.selected then
+							circle.bg = beautiful.bg_focus
+						end
+						if c3.selected == false then
+							circle.bg = "#00000000"
+						end
+					end,
+			},
 	}
     -- Create a tasklist widget
    -- s.mytasklist = awful.widget.tasklist {
