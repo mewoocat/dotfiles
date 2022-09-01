@@ -25,6 +25,7 @@ local menu = awful.popup {
         {
 			{	
 				{
+					-- Volume slider
 					{
 						{
 							{
@@ -41,6 +42,7 @@ local menu = awful.popup {
 						},
 						layout = wibox.layout.fixed.horizontal,
 					},
+					-- Brightness slider
 					{
 						{
 							{
@@ -62,6 +64,8 @@ local menu = awful.popup {
 				widget = wibox.container.margin,
 				margins = 4,
 			},
+
+			-- Stats moniter
 			{
 					{
 						{	
@@ -74,21 +78,54 @@ local menu = awful.popup {
 								},
 								layout = wibox.layout.stack,
 							},
+
 							{
-								widget = moniter.cpu_usage,  
+								{
+									{
+										widget = wibox.container.margin,
+										--top = 10,
+										--bottom = 10,
+										--forced_height = 10,
+										--forced_width = 20,
+										{
+											widget = moniter.cpu_usage,  
+										},
+									},
+									{
+										widget = moniter.cpu_icon,
+									},
+									{
+										widget = moniter.cpu_usage_percent,
+									},
+									spacing = 20,
+									layout = wibox.layout.fixed.horizontal,
+								},
+								{
+									{
+										widget = wibox.container.margin,
+										--margins = 10,
+										{
+											widget = moniter.mem_usage,
+										},
+									},
+									{
+										widget = wibox.container.margin,
+										--margins = 40,
+										{
+											widget = moniter.mem_icon,
+										},
+									},
+									{
+										widget = moniter.mem_usage_percent,
+									},
+									spacing = 20,
+									layout = wibox.layout.fixed.horizontal,
+								},
+								spacing = 28,	
+								layout = wibox.layout.fixed.vertical,
 							},
-							{
-								widget = moniter.cpu_usage_percent,
-							},
-							{
-								widget = moniter.mem_usage,
-							},
-							{
-								widget = moniter.mem_usage_percent,
-							},
-		
 							
-							spacing = 20,
+							spacing = 32,
 							layout = wibox.layout.fixed.horizontal,
 						},
 						widget = wibox.container.margin,
