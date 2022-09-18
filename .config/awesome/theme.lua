@@ -13,6 +13,10 @@ local gears = require("gears")
 
 local theme = {}
 
+
+-- Icon directory
+local icon_dir = os.getenv("HOME") .. "/.config/awesome/icons/"
+
 theme.systray_icon_spacing = 12
 
 x = xresources.get_current_theme ()
@@ -20,9 +24,10 @@ x = xresources.get_current_theme ()
 theme.font          = "Roboto 12"
 
 theme.bg_normal     = x.color0 .. "77"
+theme.bg_titlebar_normal     = x.color0 .. ""
 
 
-theme.bg_focus      = x.color5
+theme.bg_focus      = x.color4 
 theme.bg_urgent     = x.color1
 theme.bg_minimize   = x.color3
 theme.bg_systray    = theme.bg_normal
@@ -34,7 +39,7 @@ theme.fg_urgent     = x.color6
 theme.fg_minimize   = x.color6
 
 theme.useless_gap   = dpi(8)
-theme.border_width  = dpi(1)
+theme.border_width  = dpi(0)
 theme.border_normal = theme.bg_normal
 theme.border_focus  = x.color6
 theme.border_marked = x.color5
@@ -80,11 +85,13 @@ theme.menu_width  = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
-theme.titlebar_close_button_focus  = themes_path.."default/titlebar/close_focus.png"
+--theme.titlebar_close_button_normal = themes_path.."default/titlebar/sticky_normal_active.png"
+theme.titlebar_close_button_normal = icon_dir.."circle.png"
 
-theme.titlebar_minimize_button_normal = themes_path.."default/titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus  = themes_path.."default/titlebar/minimize_focus.png"
+theme.titlebar_close_button_focus  = icon_dir.."circle.png"
+
+theme.titlebar_minimize_button_normal = icon_dir.."circle2.png"
+theme.titlebar_minimize_button_focus  = icon_dir.."circle2.png"
 
 theme.titlebar_ontop_button_normal_inactive = themes_path.."default/titlebar/ontop_normal_inactive.png"
 theme.titlebar_ontop_button_focus_inactive  = themes_path.."default/titlebar/ontop_focus_inactive.png"
@@ -101,10 +108,10 @@ theme.titlebar_floating_button_focus_inactive  = themes_path.."default/titlebar/
 theme.titlebar_floating_button_normal_active = themes_path.."default/titlebar/floating_normal_active.png"
 theme.titlebar_floating_button_focus_active  = themes_path.."default/titlebar/floating_focus_active.png"
 
-theme.titlebar_maximized_button_normal_inactive = themes_path.."default/titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
+theme.titlebar_maximized_button_normal_inactive = icon_dir.."circle3.png"
+theme.titlebar_maximized_button_focus_inactive  = icon_dir.."circle3.png"
+theme.titlebar_maximized_button_normal_active = icon_dir.."circle2.png"
+theme.titlebar_maximized_button_focus_active  = icon_dir.."circle3.png"
 
 --theme.wallpaper = themes_path.."default/background.png"
 --theme.wallpaper = "~/wallpapers/0307.jpg"
@@ -145,8 +152,6 @@ theme.awesome_icon = theme_assets.awesome_icon(
     theme.menu_height, theme.bg_focus, theme.fg_focus
 )
 
--- Icon Theme Dir
-local icon_dir = os.getenv("HOME") .. "/.config/awesome/icons/"
 
 
 -- Custom Icons:

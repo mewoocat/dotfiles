@@ -44,10 +44,10 @@ function clock.toggleMenu()
 	end
 end
 
-mytextclock = wibox.widget.textclock()
-mytextclock.format = "%l:%M %p"
-mytextclock:connect_signal("button::press", function() clock.toggleMenu()  end)
+clock.textclock = wibox.widget.textclock()
+clock.textclock.format = "%l:%M %p"
+clock.textclock.refresh = 1
+clock.textclock:connect_signal("button::press", function() clock.toggleMenu()  end)
 
-clock.textclock = mytextclock
 
 return clock

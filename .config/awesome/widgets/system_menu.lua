@@ -22,7 +22,11 @@ local system_menu = {}
 
 local menu = awful.popup {
     widget = {	
+        widget  = wibox.container.margin,
+        margins = 50,
         {
+            layout = wibox.layout.fixed.vertical,
+			spacing = 20,
 			{	
 				{
 					-- Volume slider
@@ -67,127 +71,127 @@ local menu = awful.popup {
 
 			-- Stats moniter
 			{
-					{
-						{	
-							{
-								{
-									widget = moniter.cpu_temp,
-								},
-								{
-									widget = moniter.cpu_temp_int,
-								},
-								layout = wibox.layout.stack,
-							},
-
-							{
-								{
-									{
-										widget = wibox.container.margin,
-										--top = 10,
-										--bottom = 10,
-										--forced_height = 10,
-										--forced_width = 20,
-										{
-											widget = moniter.cpu_usage,  
-										},
-									},
-									{
-										widget = moniter.cpu_icon,
-									},
-									{
-										widget = moniter.cpu_usage_percent,
-									},
-									spacing = 20,
-									layout = wibox.layout.fixed.horizontal,
-								},
-								{
-									{
-										widget = wibox.container.margin,
-										--margins = 10,
-										{
-											widget = moniter.mem_usage,
-										},
-									},
-									{
-										widget = wibox.container.margin,
-										--margins = 40,
-										{
-											widget = moniter.mem_icon,
-										},
-									},
-									{
-										widget = moniter.mem_usage_percent,
-									},
-									spacing = 20,
-									layout = wibox.layout.fixed.horizontal,
-								},
-								spacing = 28,	
-								layout = wibox.layout.fixed.vertical,
-							},
-							
-							spacing = 32,
-							layout = wibox.layout.fixed.horizontal,
-						},
-						widget = wibox.container.margin,
-						margins = 16,
-					},
-					bg     = beautiful.bg_alt,
-                	clip   = true,
-                	shape  = gears.shape.rounded_rect,
-                	widget = wibox.container.background
-
-			},
-			{
-					{
-						forced_height = 100,
-						forced_width = 100,
-						widget = wifi.ssid,
-					},
-					{
-						forced_height = 100,
-						forced_width = 100,
-            		    widget = theme_mode.button,
-						-- add ssid
-            		},
+				
+				bg     = beautiful.bg_alt,
+				clip   = true,
+				shape  = gears.shape.rounded_rect,
+				widget = wibox.container.background
+				{
+					widget = wibox.container.margin,
+					margins = 16,
 					{	
-						forced_height = 100,
-						forced_width = 100,
-						widget = night_light.button,
-					},
-					{	
-						forced_height = 100,
-						forced_width = 100,
-						widget = wifi.button,
-					},
-
-					--forced_height = 600,
-					--forced_width = 600,
-
-					forced_num_cols = 4,
-   					forced_num_rows = 1,
-					--forced_height = 400,
-					--forced_width = 400,
-					--spacing = 40,
-					--horizontal_homogeneous = true,
-					--vertical_homogeneous = true,	
-   					homogeneous     = true,
-   					--expand          = true,		
-					layout = wibox.layout.grid,
-			},
-			{
-                {
-					{
+						spacing = 32,
+						layout = wibox.layout.fixed.horizontal,
 						{
+							{
+								widget = moniter.cpu_temp,
+							},
+							{
+								widget = moniter.cpu_temp_int,
+							},
+							layout = wibox.layout.stack,
+						},
+
+						{
+							{
+								{
+									widget = wibox.container.margin,
+									--top = 10,
+									--bottom = 10,
+									--forced_height = 10,
+									--forced_width = 20,
+									{
+										widget = moniter.cpu_usage,  
+									},
+								},
+								{
+									widget = moniter.cpu_icon,
+								},
+								{
+									widget = moniter.cpu_usage_percent,
+								},
+								spacing = 20,
+								layout = wibox.layout.fixed.horizontal,
+							},
+							{
+								{
+									widget = wibox.container.margin,
+									--margins = 10,
+									{
+										widget = moniter.mem_usage,
+									},
+								},
+								{
+									widget = wibox.container.margin,
+									--margins = 40,
+									{
+										widget = moniter.mem_icon,
+									},
+								},
+								{
+									widget = moniter.mem_usage_percent,
+								},
+								spacing = 20,
+								layout = wibox.layout.fixed.horizontal,
+							},
+							spacing = 28,	
+							layout = wibox.layout.fixed.vertical,
+						},
+						
+					},
+				},
+			},
+			
+			-- Button grid
+			{
+				forced_num_cols = 4,
+				forced_num_rows = 1,
+				homogeneous     = true,
+				layout = wibox.layout.grid,
+				{
+					forced_height = 100,
+					forced_width = 100,
+					widget = wifi.ssid,
+				},
+				{
+					forced_height = 100,
+					forced_width = 100,
+					widget = theme_mode.button,
+				},
+				{	
+					forced_height = 100,
+					forced_width = 100,
+					widget = night_light.button,
+				},
+				{	
+					forced_height = 100,
+					forced_width = 100,
+					widget = wifi.button,
+				},
+			},
+
+			-- User and power options
+			{
+                bg     = beautiful.bg_alt,
+                clip   = true,
+                shape  = gears.shape.rounded_rect,
+                widget = wibox.container.background
+                {
+					layout = wibox.layout.align.horizontal,
+					--fill_space = true,
+					expand = "none",
+					{
+						layout = wibox.layout.fixed.horizontal,
+						{
+							widget = wibox.container.margin,
+							margins = 16,
 							{
 								widget = user.pfp,
 							},
-							widget = wibox.container.margin,
-							margins = 16,
 						},
 						{
                 	    	widget = user.name,
 						},
-						layout = wibox.layout.fixed.horizontal,
 					},
 					{
 						widget = wibox.widget.textbox,
@@ -195,41 +199,16 @@ local menu = awful.popup {
 					{	
 						widget = power.power_button,
 					},	
-					layout = wibox.layout.align.horizontal,
-					--fill_space = true,
-					expand = "none",
                 },
-                bg     = beautiful.bg_alt,
-                clip   = true,
-                shape  = gears.shape.rounded_rect,
-                widget = wibox.container.background
             },
-
-
-			--[[
-			{
-				widget = tray.systray
-			},
-			--]]
-			
-			
-				
-
-				
-			--forced_num_cols = 2,
-    		--forced_num_rows = 2,
-    		--homogeneous     = true,
-    		--expand          = true,
-    		--layout = wibox.layout.grid
-            layout = wibox.layout.fixed.vertical,
-			spacing = 20,
         },
-        margins = 50,
-		--forced_height = 1000,
-        --forced_width  = 680,
-
-        widget  = wibox.container.margin,
     },
+
+
+
+
+
+
     border_color = '#00ff00',
     border_width = 0,
 	-- https://www.reddit.com/r/awesomewm/comments/m0fya9/ruled_placement_offset/gq9b5lv/
@@ -269,7 +248,7 @@ end
 
 menuicon = wibox.widget.imagebox()
 menuicon:set_image(beautiful.bars)
-button = wibox.container.margin(menuicon, 9, 9, 9, 9)
+button = wibox.container.margin(menuicon, 20, 20, 9, 9)
 system_menu.button = wibox.container.background(button, "#00000000")
 
 system_menu.button:connect_signal("mouse::enter", function() bgSwap("on") end)

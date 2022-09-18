@@ -32,11 +32,17 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c) : setup {
-        { -- Left
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
-            layout  = wibox.layout.fixed.horizontal
+    awful.titlebar(c, {position = "left", size = 40, bg_normal = beautiful.bg_normal, bg_focus = beautiful.bg_titlebar_normal}) : setup {
+        { -- Right
+            --awful.titlebar.widget.floatingbutton (c),
+
+            awful.titlebar.widget.closebutton    (c),
+            awful.titlebar.widget.maximizedbutton(c),
+			awful.titlebar.widget.minimizebutton(c),
+            --awful.titlebar.widget.stickybutton   (c),
+            --awful.titlebar.widget.ontopbutton    (c),
+			spacing = 0,
+            layout = wibox.layout.fixed.vertical
         },
 --[[
         { -- Middle
@@ -48,16 +54,16 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.flex.horizontal
         },
 --]]
-        { -- Right
-            --awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            --awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
+		{
+			widget = wibox.widget.textbox,
+		},	
+        { -- Left
+            awful.titlebar.widget.iconwidget(c),
+            buttons = buttons,
+            layout  = wibox.layout.fixed.horizontal
         },
 		--expand = "none",
-        layout = wibox.layout.align.horizontal,
+        layout = wibox.layout.align.vertical,
     }
 end)
 
@@ -69,3 +75,5 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+

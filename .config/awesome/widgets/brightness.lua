@@ -17,6 +17,7 @@ brightness.slider = wibox.widget {
 	handle_border_width = 0,
 	handle_width		= 40,
 	handle_margins		= 0,
+	minimum				= 1,
 	value               = 25,
 	forced_height		= 60,
 	--forced_width		= 60,

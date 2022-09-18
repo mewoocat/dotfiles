@@ -20,13 +20,18 @@ theme_mode.button = wibox.container {
 	shape        = gears.shape.rounded_rect,
 	widget = wibox.container.background,
 }
---[[
+
 function theme_mode.toggleTheme() 
 	local user = require("user_variables")
-	if user.theme == "dark"
-	awful.spawn.with_shell(script_path.."theme.sh -l")
+	if (user.theme == "dark") then
+		awful.spawn.with_shell(script_path.."theme.sh -l")
+		user.theme = "light"
+	else
+		awful.spawn.with_shell(script_path.."theme.sh -d")
+		user.theme = "dark"
+	end
 end
---]]
+
 theme_mode.button:connect_signal("mouse::enter", function() button:hoverOn(theme_mode.button) end)
 theme_mode.button:connect_signal("mouse::leave", function() button:hoverOff(theme_mode.button) end)
 theme_mode.button:connect_signal("button::press", function() theme_mode.toggleTheme() end)
