@@ -127,12 +127,14 @@ awful.screen.connect_for_each_screen(function(s)
             circle.backup     = circle.bg
             circle.has_backup = true
           end
-          circle.bg = "#00ff00"
+          circle.bg = beautiful.bg_focus
         end)
 		self:connect_signal("mouse::leave", function()
           --if circle.has_backup then circle.bg = circle.backup end
 			-- causes tag not filling issue
-			circle.bg = "#00000000"
+			if c3.selected == false then
+				circle.bg = "#00000000"	
+			end
         end)
 
         if c3.selected then
@@ -246,6 +248,7 @@ s.mytasklist = awful.widget.tasklist {
 
   local r_widgets = {
     tray.systray,
+	  tray.button,
     wibox.widget.textbox('    '),
     s.mylayoutbox,
     widgets,

@@ -111,7 +111,7 @@ theme.titlebar_floating_button_focus_active  = themes_path.."default/titlebar/fl
 theme.titlebar_maximized_button_normal_inactive = icon_dir.."circle3.png"
 theme.titlebar_maximized_button_focus_inactive  = icon_dir.."circle3.png"
 theme.titlebar_maximized_button_normal_active = icon_dir.."circle2.png"
-theme.titlebar_maximized_button_focus_active  = icon_dir.."circle3.png"
+theme.titlebar_maximized_button_focus_active  = icon_dir.."circle2.png"
 
 --theme.wallpaper = themes_path.."default/background.png"
 --theme.wallpaper = "~/wallpapers/0307.jpg"

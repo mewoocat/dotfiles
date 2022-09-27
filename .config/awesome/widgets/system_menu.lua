@@ -175,6 +175,7 @@ local menu = awful.popup {
                 bg     = beautiful.bg_alt,
                 clip   = true,
                 shape  = gears.shape.rounded_rect,
+				forced_height = 60,
                 widget = wibox.container.background
                 {
 					layout = wibox.layout.align.horizontal,
@@ -184,7 +185,7 @@ local menu = awful.popup {
 						layout = wibox.layout.fixed.horizontal,
 						{
 							widget = wibox.container.margin,
-							margins = 16,
+							margins = 8,
 							{
 								widget = user.pfp,
 							},
@@ -194,7 +195,7 @@ local menu = awful.popup {
 						},
 					},
 					{
-						widget = wibox.widget.textbox,
+    					widget = wibox.widget.textbox(" "),
 					},	
 					{	
 						widget = power.power_button,
