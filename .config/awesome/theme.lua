@@ -23,20 +23,22 @@ x = xresources.get_current_theme ()
 
 theme.font          = "Roboto 12"
 
-theme.bg_normal     = x.color0 .. "77"
+theme.bg_normal     = x.color0 .. "aa"
 theme.bg_titlebar_normal     = x.color0 .. ""
 
 
-theme.bg_focus      = x.color4 
-theme.bg_urgent     = x.color1
+theme.bg_focus      = x.color1
+theme.bg_urgent     = x.color5
 theme.bg_minimize   = x.color3
 theme.bg_systray    = theme.bg_normal
 theme.bg_alt        = x.color8 .. "77"
 
 theme.fg_normal     = x.color7
 theme.fg_focus      = theme.bg_normal
-theme.fg_urgent     = x.color6
-theme.fg_minimize   = x.color6
+theme.fg_urgent     = x.color1
+theme.fg_minimize   = x.color4
+
+theme.dock_bg       = x.color0 .. "55"
 
 theme.useless_gap   = dpi(8)
 theme.border_width  = dpi(0)
@@ -210,6 +212,9 @@ theme.cpu_icon = gears.color.recolor_image(theme.cpu_icon, theme.fg_normal)
 
 theme.mem_icon = icon_dir .. "mem.svg"
 theme.mem_icon = gears.color.recolor_image(theme.mem_icon, theme.fg_normal)
+
+theme.triangle_icon = icon_dir .. "triangle.svg"
+theme.triangle_icon = gears.color.recolor_image(theme.triangle_icon, theme.fg_normal)
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.

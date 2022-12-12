@@ -14,6 +14,7 @@ local night_light = require("widgets/night_light")
 local wifi = require("widgets/wifi")
 local theme_mode = require("widgets/theme_mode")
 local power = require("widgets/power")
+local battery = require("widgets/battery")
 
 
 local system_menu = {}
@@ -170,12 +171,15 @@ local menu = awful.popup {
 				},
 			},
 
+			-- Battery 
+			battery.menuWidget,
+
 			-- User and power options
 			{
                 bg     = beautiful.bg_alt,
                 clip   = true,
                 shape  = gears.shape.rounded_rect,
-				forced_height = 60,
+				forced_height = 80,
                 widget = wibox.container.background
                 {
 					layout = wibox.layout.align.horizontal,

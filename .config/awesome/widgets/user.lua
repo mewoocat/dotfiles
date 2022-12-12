@@ -16,8 +16,8 @@ end)
 
 user.pfp = wibox.widget {
 	{
-		forced_height = 40,
-		forced_width = 40,
+		forced_height = 60,
+		forced_width = 60,
 		image = pfp,
 		widget = wibox.widget.imagebox
 	},

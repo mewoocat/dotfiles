@@ -6,7 +6,7 @@ editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- path to image
-pfp = "/home/ghost/Pictures/cat-black.gif"
+pfp = "/home/ghost/Pictures/zero.jpeg"
 
 local user = {}
 

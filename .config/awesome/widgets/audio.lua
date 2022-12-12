@@ -3,21 +3,20 @@ local beautiful = require("beautiful")
 local awful = require("awful")
 local gears = require("gears")
 
-local audio = {}
+audio = {}
 
--- volumen icon
+-- volume icon
 local image = wibox.widget.imagebox()
 audio.icon = wibox.container.margin(
 	image,
 	5, 5, 5, 5
 )
 
-
-
 -- volume percentage
 audio.level_text = wibox.widget.textbox()
 awful.spawn.easy_async("pamixer --get-volume", function(stdout)
 	audio.level_text.text = stdout:sub(0, -2) .. "%"
+	
 end)
 audio.level = wibox.container.margin(
 	--awful.widget.watch('pamixer --get-volume', 1),
@@ -33,8 +32,10 @@ end
 
 audio.setIcon()
 
-function audio.volumeUp()
-	
+function audio.up()
+	awful.spawn.easy_async("pamixer --get-volume", function(stdout)
+		audio.slider["value"] = tonumber(stdout)
+	end)
 end
 
 function audio.volumeDown()

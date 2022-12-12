@@ -1,6 +1,7 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
+local gears = require("gears")
 
 local battery = {}
 
@@ -30,5 +31,24 @@ battery.percent = awful.widget.watch('acpi', 1,
 			end
 		end
 )
+
+local timeCMD = 'bash -c "acpi | awk \'{print $5}\'"'
+battery.time = awful.widget.watch(timeCMD, 1,
+		function(widget, stdout)
+			output = {}
+			widget:set_text(stdout)
+		end
+)
+
+battery.menuWidget = {
+	widget = wibox.container.background,
+	--forced_height = 200,
+	bg = beautiful.bg_alt,
+    shape  = gears.shape.rounded_rect,
+
+	{
+		widget = battery.time
+	}
+}
 
 return battery

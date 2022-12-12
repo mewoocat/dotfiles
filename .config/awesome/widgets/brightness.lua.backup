@@ -1,3 +1,13 @@
+--[[
+	brightness.lua
+	Components:
+		Slider widget
+		Brightness icon
+		Control functions
+			Brightness up
+			Brightness down
+]]
+
 local wibox = require("wibox")
 local gears = require("gears")
 local beautiful = require("beautiful")
@@ -7,11 +17,6 @@ local naughty = require("naughty")
 
 brightness = {}
 
-brightness.icon = wibox.widget {
-	--resize = false,
-	image = beautiful.brightness,
-	widget = wibox.widget.imagebox,
-}
 
 brightness.slider = wibox.widget {
 	bar_shape = gears.shape.rounded_rect,
@@ -42,19 +47,32 @@ brightness.slider:connect_signal("property::value", function(_, new_value)
 	awful.spawn.with_shell("light -S " .. tostring(new_value))
 end)
 
-
+brightness.icon = wibox.widget {
+	--resize = false,
+	image = beautiful.brightness,
+	widget = wibox.widget.imagebox,
+}
 
 brightness.up = function() 
 	awful.spawn.easy_async("light -A 2", function()
 		awful.spawn.easy_async("light", function(stdout)
 			brightness.slider.value = tonumber(stdout)
+			--brightness.slider:set_value( tonumber(stdout))
+			--brightness.slider.value = 50
+--			naughty.notify({ preset = naughty.config.presets.critical,
+--				title = "Slider value",
+--				text = tostring(brightness.slider.value) })
 		end)
 	end)
 end
 
 brightness.down = function() 
 	awful.spawn.with_shell("light -U 2") 
-
+	--[[
+	awful.spawn.easy_async("light", function(stdout)
+		brightness.slider["value"] = tonumber(stdout)
+	end)
+	]]
 end
 
 return brightness

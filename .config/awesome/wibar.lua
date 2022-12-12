@@ -15,6 +15,7 @@ local wifi = require("widgets/wifi")
 
 local tray = require("widgets/tray")
 local audio = require("widgets/audio")
+local brightness = require("widgets/brightness")
 
 local launcher = require("widgets/launcher")
 
@@ -26,7 +27,7 @@ awful.screen.connect_for_each_screen(function(s)
   set_wallpaper(s)
 
   -- Each screen has its own tag table.
-  awful.tag({ " 1 ", " 2 ", " 3 ", " 4 ", "5" }, s, awful.layout.layouts[1])
+  awful.tag({ " 1 ", " 2 ", " 3 ", " 4 ", "5", "6", "7", "8" }, s, awful.layout.layouts[1])
 
 
   -- Create a promptbox for each screen
@@ -111,7 +112,7 @@ awful.screen.connect_for_each_screen(function(s)
 			-- causes tag not filling issue | make hover not work on selected?
         end)
         if c3.selected then
-          circle.bg = beautiful.bg_focus
+          circle.bg = beautiful.fg_normal
         end
         if c3.selected == false then
           circle.bg = "#00000000"
@@ -127,7 +128,7 @@ awful.screen.connect_for_each_screen(function(s)
             circle.backup     = circle.bg
             circle.has_backup = true
           end
-          circle.bg = beautiful.bg_focus
+          circle.bg = beautiful.fg_normal
         end)
 		self:connect_signal("mouse::leave", function()
           --if circle.has_backup then circle.bg = circle.backup end
@@ -138,7 +139,7 @@ awful.screen.connect_for_each_screen(function(s)
         end)
 
         if c3.selected then
-          circle.bg = beautiful.bg_focus
+          circle.bg = beautiful.fg_normal
 		  
         end
         if c3.selected == false then
@@ -202,15 +203,17 @@ s.mytasklist = awful.widget.tasklist {
         {
             awful.widget.clienticon,
             left = 18,
-			top = 4,
-			bottom = 4,
-			right = 18,
+			      top = 4,
+			      bottom = 4,
+			      right = 18,
             widget  = wibox.container.margin
         },
         nil,
         layout = wibox.layout.align.vertical,
     },
 }
+
+
 
   -- Create the wibox
   s.mywibox = awful.wibar({ position = "top", screen = s, height = 44 })
@@ -222,16 +225,26 @@ s.mytasklist = awful.widget.tasklist {
     widget = wibox.container.background
   }
   original_bg = rw.bg
+
+  --[[
+Hover for right widgets
+
   rw:connect_signal("mouse::enter", function()
     --rw.bg = beautiful.bg_normal
     rw.bg = "#00000065"
   end)
   rw:connect_signal("mouse::leave", function() rw.bg = original_bg end)
   rw:connect_signal("button::press", function() system_menu.toggleMenu() end)
+]]
+
   --system_menu.button:connect_signal("button::press", function() system_menu.toggleMenu() end)
   local widgets = {
     {
       --tray.button,
+      tray.systray,
+      tray.button,
+      wibox.widget.textbox('    '),
+      s.mylayoutbox,
       wibox.widget.textbox('    '),
       wifi.icon,
       wibox.widget.textbox('    '),
@@ -247,10 +260,7 @@ s.mytasklist = awful.widget.tasklist {
   }
 
   local r_widgets = {
-    tray.systray,
-	  tray.button,
-    wibox.widget.textbox('    '),
-    s.mylayoutbox,
+  
     widgets,
     system_menu.button,
     layout = wibox.layout.fixed.horizontal,
@@ -267,11 +277,11 @@ s.mytasklist = awful.widget.tasklist {
       layout = wibox.layout.fixed.horizontal,
       --spacing = 20,
       launcher.mylauncher,
-      s.mytaglist,
+      clock.textclock,
       s.mypromptbox,
-      s.mytasklist,
+      --s.mytasklist,
     },
-    clock.textclock,
+    s.mytaglist,
     r_widgets
   }
 end)

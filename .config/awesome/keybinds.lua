@@ -4,6 +4,7 @@ local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
 local audio = require("widgets/audio")
+local brightness = require("widgets/brightness")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -130,6 +131,7 @@ globalkeys = gears.table.join(
 		{}, 
 		"XF86AudioRaiseVolume", 
 		function()
+            audio.up()
 			awful.spawn.with_shell("pamixer -i 5")  
 			awful.spawn.easy_async("pamixer --get-volume", function(stdout)
 				audio.level_text.text = stdout:sub(0, -2) .. "%"
@@ -151,11 +153,22 @@ globalkeys = gears.table.join(
 		{description = "raise volume", group = "system"
 	}),
 
+    awful.key(
+		{}, 
+		"XF86AudioMute", 
+		function() 
+			awful.spawn.with_shell("pamixer -t")
+
+		end, 
+		{description = "raise volume", group = "system"
+	}),
+
 	-- brightness
-	awful.key({}, "XF86MonBrightnessUp", function() awful.spawn.with_shell("light -A 2") end, {description = "Increase Brightness", group = "system"}),
-	awful.key({}, "XF86MonBrightnessDown", function() awful.spawn.with_shell("light -U 2") end, {description = "Decrease Brightness", group = "system"})
+	awful.key({}, "XF86MonBrightnessUp", brightness.up, {description = "Increase Brightness", group = "system"}),
+	awful.key({}, "XF86MonBrightnessDown", brightness.down, {description = "Decrease Brightness", group = "system"}),
 
-
+	-- Screenshot
+	awful.key({}, "Print", function() awful.spawn.with_shell("flameshot gui") end, {description = "Take screenshot", group = "system"})
 )
 
 clientkeys = gears.table.join(
