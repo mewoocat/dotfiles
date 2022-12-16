@@ -1,9 +1,8 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
-
+-- Error Handling
 require("error_handling")
-
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -14,15 +13,11 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
-
-
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
 require("startup")
-
 beautiful.init("~/.config/awesome/theme.lua")
-
 require("awful.hotkeys_popup.keys")
 
 
@@ -39,6 +34,5 @@ require("keybinds")
 require("rules")
 require("signals")
 
---require("startup")
 
 

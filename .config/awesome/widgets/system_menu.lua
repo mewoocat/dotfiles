@@ -5,8 +5,8 @@ local gears = require("gears")
 local naughty = require("naughty")
 
 -- widgets
-local brightness = require("widgets.brightness")
-local audio = require("widgets.audio")
+local brightness = require("widgets/brightness")
+local audio = require("widgets/audio")
 local moniter = require("widgets/moniter")
 local user = require("widgets/user")
 local tray = require("widgets/tray")
@@ -224,7 +224,7 @@ local menu = awful.popup {
     visible      = false,
 	ontop		 = true,
 	--opacity		 = 1.0,
-	--bg			 = "#ffffff",	
+	bg			 = "#000000aa",	
 	maximum_width		 = 500,
 	maximum_height		 = 800,
 }

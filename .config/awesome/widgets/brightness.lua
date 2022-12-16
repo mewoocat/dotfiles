@@ -23,8 +23,8 @@ brightness.slider = wibox.widget {
 	handle_border_width = 0,
 	handle_width		= 40,
 	handle_margins		= 0,
-	--minimum = 1,
-	--maximum = 100,
+	minimum = 1,
+	maximum = 100,
 	value               = 25,
 	forced_height		= 60,
 	--forced_width		= 60,
@@ -53,8 +53,11 @@ brightness.up = function()
 end
 
 brightness.down = function() 
-	awful.spawn.with_shell("light -U 2") 
-
+	awful.spawn.easy_async("light -U 2", function()
+		awful.spawn.easy_async("light", function(stdout)
+			brightness.slider.value = tonumber(stdout)
+		end)
+	end)
 end
 
 return brightness

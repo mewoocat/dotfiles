@@ -26,12 +26,15 @@ theme.font          = "Roboto 12"
 theme.bg_normal     = x.color0 .. "aa"
 theme.bg_titlebar_normal     = x.color0 .. ""
 
+theme.green = "#00ff00"
+theme.red = "#ff0000"
+
 
 theme.bg_focus      = x.color1
 theme.bg_urgent     = x.color5
 theme.bg_minimize   = x.color3
 theme.bg_systray    = theme.bg_normal
-theme.bg_alt        = x.color8 .. "77"
+theme.bg_alt        = x.color0 .. "99"
 
 theme.fg_normal     = x.color7
 theme.fg_focus      = theme.bg_normal
@@ -158,14 +161,52 @@ theme.awesome_icon = theme_assets.awesome_icon(
 
 -- Custom Icons:
 theme.launcher_icon = "/home/ghost/.config/awesome/icons/gundam.svg"
-theme.launcher_icon = gears.color.recolor_image(theme.launcher_icon, theme.fg_normal )
+theme.launcher_icon = gears.color.recolor_image(theme.launcher_icon, theme.fg_urgent )
 
+-- Battery icons
 theme.battery_icon = icon_dir .. "bat-full.svg"
 theme.battery_icon = gears.color.recolor_image(theme.battery_icon, theme.fg_normal )
 
+theme.battery_empty = icon_dir .. "battery_empty.svg"
+theme.battery_empty = gears.color.recolor_image(theme.battery_empty, theme.fg_normal )
+
+theme.battery_full = icon_dir .. "battery_full.svg"
+theme.battery_full = gears.color.recolor_image(theme.battery_full, theme.green )
+
+theme.battery_75 = icon_dir .. "battery_75.svg"
+theme.battery_75 = gears.color.recolor_image(theme.battery_75, theme.green )
+
+theme.battery_50 = icon_dir .. "battery_50.svg"
+theme.battery_50 = gears.color.recolor_image(theme.battery_50, theme.green )
+
+theme.battery_25 = icon_dir .. "battery_25.svg"
+theme.battery_25 = gears.color.recolor_image(theme.battery_25, theme.red )
+
+theme.battery_charging_frame = icon_dir .. "battery_charging_frame.svg"
+theme.battery_charging_frame = gears.color.recolor_image(theme.battery_charging_frame, theme.fg_normal )
+
+theme.battery_charging_amount = icon_dir .. "battery_charging_amount.svg"
+theme.battery_charging_amount = gears.color.recolor_image(theme.battery_charging_amount, theme.green )
+
+
+-- Volume icons
 theme.vol_high = icon_dir .. "vol.svg"
 theme.vol_high = gears.color.recolor_image(theme.vol_high, theme.fg_normal )
 
+theme.volume_3 = icon_dir .. "volume_3.svg"
+theme.volume_3 = gears.color.recolor_image(theme.volume_3, theme.fg_normal)
+
+theme.volume_2 = icon_dir .. "volume_2.svg"
+theme.volume_2 = gears.color.recolor_image(theme.volume_2, theme.fg_normal)
+
+theme.volume_1 = icon_dir .. "volume_1.svg"
+theme.volume_1 = gears.color.recolor_image(theme.volume_1, theme.fg_normal)
+
+theme.volume_0 = icon_dir .. "volume_0.svg"
+theme.volume_0 = gears.color.recolor_image(theme.volume_0, theme.fg_normal)
+
+theme.volume_mute = icon_dir .. "volume_mute.svg"
+theme.volume_mute = gears.color.recolor_image(theme.volume_mute, theme.fg_normal)
 
 -- wifi icons
 theme.wifi_3 = icon_dir .. "wifi-3.svg"
@@ -218,7 +259,8 @@ theme.triangle_icon = gears.color.recolor_image(theme.triangle_icon, theme.fg_no
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = nil
+--theme.icon_theme = nil
+theme.icon_theme = "Papirus"
 
 return theme
 

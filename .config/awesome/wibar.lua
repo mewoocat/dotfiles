@@ -3,7 +3,6 @@ local wibox = require("wibox")
 local gears = require("gears")
 local beautiful = require("beautiful")
 
-
 -- clock
 local clock = require("widgets/clock")
 
@@ -238,6 +237,9 @@ Hover for right widgets
 ]]
 
   --system_menu.button:connect_signal("button::press", function() system_menu.toggleMenu() end)
+
+
+
   local widgets = {
     {
       --tray.button,
@@ -249,6 +251,7 @@ Hover for right widgets
       wifi.icon,
       wibox.widget.textbox('    '),
       battery.percent,
+      wibox.widget.textbox(' '),
       battery.icon,
       wibox.widget.textbox('    '),
       audio.level,

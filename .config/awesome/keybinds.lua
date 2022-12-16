@@ -4,6 +4,13 @@ local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
 local audio = require("widgets/audio")
+
+awful.spawn.easy_async("pamixer --get-volume", function(stdout)
+	naughty.notify({ preset = naughty.config.presets.critical, title = "Debug",text = tostring(stdout) })
+	audio.level_text.text = stdout:sub(0, -2) .. "%"
+end)	
+
+
 local brightness = require("widgets/brightness")
 
 -- Default modkey.
@@ -132,10 +139,6 @@ globalkeys = gears.table.join(
 		"XF86AudioRaiseVolume", 
 		function()
             audio.up()
-			awful.spawn.with_shell("pamixer -i 5")  
-			awful.spawn.easy_async("pamixer --get-volume", function(stdout)
-				audio.level_text.text = stdout:sub(0, -2) .. "%"
-			end)
 		end, 
 		{description = "raise volume", group = "system"
 	}),
@@ -144,11 +147,7 @@ globalkeys = gears.table.join(
 		{}, 
 		"XF86AudioLowerVolume", 
 		function() 
-			awful.spawn.with_shell("pamixer -d 5") 
-			awful.spawn.easy_async("pamixer --get-volume", function(stdout)
-				audio.level_text.text = stdout:sub(0, -2) .. "%"
-			end)
-
+            audio.down()
 		end, 
 		{description = "raise volume", group = "system"
 	}),
@@ -157,7 +156,7 @@ globalkeys = gears.table.join(
 		{}, 
 		"XF86AudioMute", 
 		function() 
-			awful.spawn.with_shell("pamixer -t")
+			audio.mute()
 
 		end, 
 		{description = "raise volume", group = "system"
